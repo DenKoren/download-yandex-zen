@@ -11,9 +11,9 @@ For convenience of Mac OS X users, there is 'install' script in the repository r
 ## For Linux users
 
 ### Installation
-1 - Install ffmpeg and fish shell
-2 - Copy `download-yandex-zen` script to any place you want.
-3 - You're done!
+1. Install ffmpeg and fish shell
+2. Copy `download-yandex-zen` script to any place you want.
+3. You're done!
 
 ### Usage
 `download-yandex-zen '<video page URL>' '<target file>'` 
@@ -27,10 +27,10 @@ If you want to download only audio (e.g. podcasts), just choose file extension t
 ## For Mac OS X users
 
 ### Installation
-1 - Install [homebrew](https://brew.sh/) if not done yet.
-2 - Open Terminal.app
-3 - Copy `...` and press enter.
-3 - You're done!
+1. Install [homebrew](https://brew.sh/) if not done yet.
+2. Open Terminal.app
+3. Copy `...` and press enter.
+3. You're done!
 
 ### Usage
 Check `Yandex.Zen downloader` application on your desktop. This is the thing you should run to start the download process.
