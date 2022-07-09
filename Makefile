@@ -11,8 +11,8 @@ install:
 	@chmod +x '/usr/local/bin/download-yandex-zen'
 
 brew-%:
-	@echo "  installing '$*'"
-	@brew install $*
+	@echo "  installing '$*' with homebrew"
+	@brew install $* 1>/dev/null 2>/dev/null
 
 
 install-osx: brew-ffmpeg \
