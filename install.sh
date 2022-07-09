@@ -4,6 +4,10 @@ set -o nounset
 set -o errexit
 set -o pipefail
 
+debug_log_path="/tmp/download-yandex-zen-debug.log"
+clone_dir="/tmp/download-yandex-zen"
+
+
 function now() {
     date '+%Y-%m-%d %H:%M:%S'
 }
@@ -15,13 +19,12 @@ function log() {
 }
 
 function debug_log() {
-    cat >/tmp/download-yandex-zen-debug.log
+    cat >>"${debug_log_path}"
 }
 
 log "Installing 'git' and 'make' with homebrew..."
 brew install git make 2>&1 | debug_log
 
-clone_dir="/tmp/download-yandex-zen"
 log "Cloning repository with downloader script to '${clone_dir}'..."
 
 if [ -n "${clone_dir}" -a -d "${clone_dir}" ]; then
@@ -34,5 +37,5 @@ cd "${clone_dir}"
 log "Installing downloader..."
 make install-osx
 
-log "Removing '${clone_dir}'..."
-rm -rf "${clone_dir}"
+log "Removing '${clone_dir}' and debug logs..."
+rm -rf "${clone_dir}" "${debug_log_path}"
