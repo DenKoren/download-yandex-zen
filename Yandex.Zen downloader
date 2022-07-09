@@ -48,4 +48,4 @@ if [ -f $file_path ]
 	rm $file_path
 end
 
-/usr/local/bin/download-zen-video $url $file_path
+/usr/local/bin/download-yandex-zen $url $file_path
