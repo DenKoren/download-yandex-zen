@@ -29,7 +29,7 @@ function alert_user
 	set --local alert_body $argv[2]
 
 	osascript -e "
-		set a to display dialog \"$alert_heading\n\n$alert_body\" buttons {\"Exit\"} default button \"Exit\"
+		set a to display dialog \"$alert_heading\n\n$alert_body\" buttons {\"Exit\"} default button \"Exit\" giving up after 10
 	" >/dev/null
 	exit 1
 end
