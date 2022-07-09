@@ -36,10 +36,10 @@ end
 
 set --local url (prompt_text "Введите ссылку на страницу с видео для скачивания")
 if [ -z $url ]
-	alert_user "Video URL is empty" "Have no idea what to download."
+	alert_user "Ссылка на видео пустая" "Не знаю откуда скачивать видео"
 end
 
-set --local file_path (prompt_file "Укажите, куда сохранить файл. Если вы хотите скачать только звук, используйте расширения '.mp3' или '.wav'")
+set --local file_path (prompt_file "Укажите, куда сохранить файл.\nЕсли вы хотите скачать только звук, используйте расширения '.mp3' или '.wav'")
 if [ -z $file_path ]
 	exit 1
 end

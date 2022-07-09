@@ -39,7 +39,7 @@ if [ -z $url ]
 	alert_user "Video URL is empty" "Have no idea what to download."
 end
 
-set --local file_path (prompt_file "Choose where to save the downloaded video. To download only audio, use '.mp3' or '.wav' file extension")
+set --local file_path (prompt_file "Choose where to save the downloaded video.\nTo download only audio, use '.mp3' or '.wav' file extension")
 if [ -z $file_path ]
 	exit 1
 end
