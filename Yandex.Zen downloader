@@ -34,7 +34,7 @@ function alert_user
 	exit 1
 end
 
-set --local url (prompt_text "Please, provide URL to the page with video" "Continue")
+set --local url (prompt_text "Please, provide URL to the page with video")
 if [ -z $url ]
 	alert_user "Video URL is empty" "Have no idea what to download."
 end

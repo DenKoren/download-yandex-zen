@@ -21,3 +21,5 @@ install-osx: brew-ffmpeg \
 	@echo "  installing 'Yandex.Zen downloader' script to '~/Desktop'"
 	@cp './Yandex.Zen downloader' ~/Desktop/
 	@chmod +x ~/Desktop/'Yandex.Zen downloader'
+	@cp './Yandex.Zen downloader (rus)' ~/Desktop/
+	@chmod +x ~/Desktop/'Yandex.Zen downloader (rus)'

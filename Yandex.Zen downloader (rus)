@@ -1,0 +1,51 @@
+#!/usr/local/bin/fish
+# vim: set noexpandtab:
+
+function prompt_text
+	set --local prompt $argv[1]
+
+	osascript -e "
+		set userInput to display dialog \"$prompt\" default answer \"\" buttons {\"Отмена\", \"Продолжить\"} default button \"Продолжить\"
+
+		if button returned of userInput is \"Продолжить\" then
+			text returned of userInput
+		else
+			\"\"
+		end if
+	"
+end
+
+function prompt_file
+	set --local prompt $argv[1]
+
+	osascript -e "
+		set downloadFile to choose file name with prompt \"$prompt\"
+		POSIX path of downloadFile
+	"
+end
+
+function alert_user
+	set --local alert_heading $argv[1]
+	set --local alert_body $argv[2]
+
+	osascript -e "
+		set a to display dialog \"$alert_heading\n\n$alert_body\" buttons {\"Выйти\"} default button \"Выйти\" giving up after 10
+	" >/dev/null
+	exit 1
+end
+
+set --local url (prompt_text "Введите ссылку на страницу с видео для скачивания")
+if [ -z $url ]
+	alert_user "Video URL is empty" "Have no idea what to download."
+end
+
+set --local file_path (prompt_file "Укажите, куда сохранить файл. Если вы хотите скачать только звук, используйте расширения '.mp3' или '.wav'")
+if [ -z $file_path ]
+	exit 1
+end
+
+if [ -f $file_path ]
+	rm $file_path
+end
+
+/usr/local/bin/download-yandex-zen $url $file_path
