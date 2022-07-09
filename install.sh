@@ -33,3 +33,6 @@ cd "${clone_dir}"
 
 log "Installing downloader..."
 make install-osx
+
+log "Removing '${clone_dir}'..."
+rm -rf "${clone_dir}"
