@@ -1,0 +1,47 @@
+#!/usr/local/bin/fish
+# vim: set noexpandtab:
+
+function prompt_text
+	set --local prompt $argv[1]
+
+	osascript -e "
+		set userInput to display dialog \"$prompt\" default answer \"\" buttons {"Cancel", "Continue"} default button "Continue" cancel button "Cancel"
+		text returned of userInput
+	"
+end
+
+function prompt_file
+	set --local prompt $argv[1]
+
+	osascript -e "
+		set downloadFile to choose file name with prompt \"$prompt\"
+		POSIX path of downloadFile
+	"
+end
+
+function alert_user
+	set --local alert_heading $argv[1]
+	set --local alert_body $argv[2]
+
+	osascript -e "
+		display alert \"$alert_heading\" message \"$alert_body\" as critical buttons {"Close"} default button "Close"
+	"
+	exit 1
+end
+
+set --local url (prompt_text "Please, provide URL to the page with video" "Continue")
+set --local file_path (prompt_file "Choose where to save the downloaded video. To download only audio, use '.mp3' or '.wav' file extension")
+
+if [ -z $url ]
+	alert_user "Video URL is empty" "Have no idea what to download."
+end
+
+if [ -z $file_path ]
+	alert_user "Save file path is empty" "Have no idea where to save downloaded content."
+end
+
+if [ -f $file_path ]
+	rm $file_path
+end
+
+/usr/local/bin/download-zen-video $url $file_path
